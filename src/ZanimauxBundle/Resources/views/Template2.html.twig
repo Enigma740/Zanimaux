@@ -1,0 +1,150 @@
+{% extends "ZanimauxBundle::Layout.html.twig" %}
+{% trans_default_domain 'FOSUserBundle' %}
+{% block head %}
+    {{ parent() }}
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <script src="{{ asset('js/jquery-1.11.1.min.js') }}"></script>
+<title>{% block title %}{{ parent() }} -Inscrit{% endblock %}</title>
+
+{% endblock %}
+
+{% block menu %}
+    <section class="menu-section">
+        <div class="container">
+            <div class="row ">
+                <div class="col-md-12">
+
+                    <div class="navbar-collapse collapse ">
+                        <ul id="menu-top" class="nav navbar-nav navbar-right">
+                            <li><a href="index.html">Véterinaire</a></li>
+                            <li><a href="about.html">Refuge</a></li>
+                            <li><a href="gallery.html" >Magasin</a></li>
+                            <li><a href="contact.html">Dresseur & pet-sitter</a></li>
+                            <li><a href="features.html">Annonce</a></li>
+                            <li><a href="contact.html">événement</a></li>
+                            <li><a href="{{ path('inscription') }}" class="menu-top-active">s'inscrire</a></li>
+                            <li><a href="{{ path('login') }}">S'identifier</a></li>
+
+                        </ul>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+{% endblock %}
+    {% block contenu %}
+        {% block formulaire %}
+            <script>
+                $(function() {
+                    $( "#roleV" ).click(function() {
+                        $( "#num" ).toggle();
+                    });
+                });
+            </script>
+            <form action="{{ path('fos_user_registration_register') }}" method="POST" class="form-horizontal" role="form">
+                {{form_errors(form)}}
+
+
+                <fieldset>
+                    <legend>Enregistrement d'un utilisateur</legend>
+                    <div class="form-group">
+                        <label for="email" class="col-md-2 control_label">Email :</label>
+                        <div class="col-md-3">
+                            <input class="form-control" type="email" id="email" name="fos_user_registration_form[email]" placeholder="exemple@gmail.com" required="required" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="username" class="col-md-2 control_label">Identifiant :</label>
+                        <div class="col-md-3">
+                            <input class="form-control" type="text" id="username" name="fos_user_registration_form[username]" required="required" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="plainPassword_first" class="col-md-2 control_label">Mot de passe :</label>
+                        <div class="col-md-3">
+                            <input class="form-control" type="password" id="plainPassword_first" name="fos_user_registration_form[plainPassword][first]"  required="required" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="plainPassword_second" class="col-md-2 control_label">Confirmation du mot de passe :</label>
+                        <div class="col-md-3">
+                            <input class="form-control" type="password" id="plainPassword_second" name="fos_user_registration_form[plainPassword][second]"  required="required" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="id" class="col-md-2 control_label">Cin :</label>
+                        <div class="col-md-3">
+                            <input class="form-control" type="number" id="id" name="fos_user_registration_form[id]"  required="required" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="nom" class="col-md-2 control_label">Nom :</label>
+                        <div class="col-md-3">
+                            <input class="form-control" type="text" id="nom" name="fos_user_registration_form[nom]" required="required" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="prenom" class="col-md-2 control_label">Prenom :</label>
+                        <div class="col-md-3">
+                            <input class="form-control" type="text" id="prenom" name="fos_user_registration_form[prenom]"  required="required" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="adresse" class="col-md-2 control_label">Adresse :</label>
+                        <div class="col-md-3">
+                            <input class="form-control" type="text" id="adresse" name="fos_user_registration_form[adresse]"  required="required" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="ville" class="col-md-2 control_label">Ville :</label>
+                        <div class="col-md-3">
+                            <input class="form-control" type="text" id="ville" name="fos_user_registration_form[ville]"  required="required" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="codePostale" class="col-md-2 control_label">Code postale :</label>
+                        <div class="col-md-3">
+                            <input class="form-control" type="text" id="codePostale" name="fos_user_registration_form[codePostale]"  required="required" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="telephone" class="col-md-2 control_label">Telephone :</label>
+                        <div class="col-md-3">
+                            <input class="form-control" type="number" id="telephone" name="fos_user_registration_form[telephone]"  required="required" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="roles" class="col-md-2 control_label">Vous êtes :</label>
+                        <div class="col-md-3">
+                              <input class="form-control" type="checkbox" id="roleV" name="fos_user_registration_form[roles][ROLE_VETERINAIRE]" value="ROLE_VETERINAIRE" required="required"  /> Veterinaire
+                              <input class="form-control" type="checkbox" id="roleC" name="fos_user_registration_form[roles][ROLE_CLIENT]" value="ROLE_CLIENT" required="required"  />Client</label>
+                              <input class="form-control" type="checkbox" id="roleD" name="fos_user_registration_form[roles][ROLE_DRESSEUR]" value="ROLE_DRESSEUR" required="required"  />Dresseur
+                              <input class="form-control" type="checkbox" id="roleM" name="fos_user_registration_form[roles][ROLE_PROPRIETAIRE_MAGASIN]" value="ROLE_PROPRIETAIRE_MAGASIN" required="required"  />Proprietaire magasin
+                              <input class="form-control" type="checkbox" id="roleR" name="fos_user_registration_form[roles][ROLE_PROPRIETAIRE_REFUGE]" value="ROLE_PROPRIETAIRE_REFUGE" required="required"  />Proprietaire refuge
+                        </div>
+                    </div>
+                    <div class="form-group" style="display: none" id="num">
+                        <label for="numeroOrdre" class="col-md-2 control_label">Numero Ordre :</label>
+                        <div class="col-md-3">
+                            <input class="form-control" type="number" id="numeroOrdreOrdre" name="fos_user_registration_form[numeroOrdre]"  required="required"  />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <button type="submit" class="btn btn-primary">Valider <span class="glyphicon glyphicon-ok"></span></button>
+                        </div>
+                    </div>
+                </fieldset>
+
+                {{ form_widget(form._token) }}
+            </form>
+
+        {% endblock %}
+    {%endblock %}

@@ -1,0 +1,68 @@
+{% extends "ZanimauxBundle:User:Layout2.html.twig" %}
+{% trans_default_domain 'FOSUserBundle' %}
+{% block head %}
+    {{ parent() }}
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title>{% block title %}{{ parent() }} -profile{% endblock %}</title>
+    <script src="{{ asset('js/jquery-1.11.1.min.js') }}"></script>
+{% endblock %}
+
+{% block menu %}
+    <section class="menu-section">
+        <div class="container">
+            <div class="row ">
+                <div class="col-md-12">
+
+                    <div class="navbar-collapse collapse ">
+                        <ul id="menu-top" class="nav navbar-nav navbar-right">
+                            <li><a href="{{ path('redirect') }}">Acceuil</a></li>
+                            <li><a href="index.html">Véterinaire</a></li>
+                            <li><a href="about.html">Refuge</a></li>
+                            <li><a href="gallery.html" >Magasin</a></li>
+                            <li><a href="contact.html">Dresseur & pet-sitter</a></li>
+                            <li><a href="features.html">Annonce</a></li>
+                            <li><a href="contact.html">événement</a></li>
+                            <li><a href="{{ path('profile') }}" class="menu-top-active">Profile</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block contenu %}
+    <script>
+        $(function() {
+            $( "#modif" ).click(function() {
+                $( "#modif2" ).toggle();
+            });
+        });
+    </script>
+    <label>
+        <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
+        <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
+        <p>Nom: {{ user.nom }}</p>
+        <p>Prenom: {{ user.prenom }}</p>
+        <p>Cin: {{ user.id }}</p>
+        <p>Adresse: {{ user.adresse }}</p>
+        <p>Ville: {{ user.ville }}</p>
+        <p>Code Postale: {{ user.codePostale }}</p>
+        <p>Telephone: {{ user.telephone }}</p>
+    </label>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <button type="button" id="modif" >Modifier </button>
+        </div>
+    </div>
+    <div style="display: none" id="modif2">
+        <input type="submit" value="{{ 'profile.edit.submit'|trans }}" />
+    </div>
+
+{%endblock %}

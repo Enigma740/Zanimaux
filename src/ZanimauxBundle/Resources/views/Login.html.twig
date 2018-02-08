@@ -1,0 +1,66 @@
+{% extends "ZanimauxBundle::Layout.html.twig" %}
+{% trans_default_domain 'FOSUserBundle' %}
+{% block head %}
+    {{ parent() }}
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title>{% block title %}{{ parent() }} -Login{% endblock %}</title>
+
+{% endblock %}
+
+{% block menu %}
+    <section class="menu-section">
+        <div class="container">
+            <div class="row ">
+                <div class="col-md-12">
+
+                    <div class="navbar-collapse collapse ">
+                        <ul id="menu-top" class="nav navbar-nav navbar-right">
+                            <li><a href="index.html">Véterinaire</a></li>
+                            <li><a href="about.html">Refuge</a></li>
+                            <li><a href="gallery.html" >Magasin</a></li>
+                            <li><a href="contact.html">Dresseur & pet-sitter</a></li>
+                            <li><a href="features.html">Annonce</a></li>
+                            <li><a href="contact.html">événement</a></li>
+                            <li><a href="{{ path('inscription') }}">S'inscrire</a></li>
+                            <li><a href="{{ path('login') }}" class="menu-top-active">S'identifier</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block contenu %}
+    {% block formulaire %}
+        <h1>Connexion :</h1></br>
+        <div></div>
+
+        {% if error %}
+            <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+
+        <form action="{{ path("fos_user_security_check") }}" method="post">
+            {% if csrf_token %}
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+            {% endif %}
+
+            <label for="username">{{ 'security.login.username'|trans }}</label>
+            <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+
+            <label for="password">{{ 'security.login.password'|trans }}</label>
+            <input type="password" id="password" name="_password" required="required" />
+
+            <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+            <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+
+            <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+        </form>
+{% endblock %}
+{% endblock %}

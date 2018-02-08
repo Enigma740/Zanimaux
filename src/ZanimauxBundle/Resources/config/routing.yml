@@ -1,0 +1,25 @@
+zanimaux_homepage:
+    path:     /
+    defaults: { _controller: ZanimauxBundle:Default:index }
+
+affiche:
+    path:     /affiche
+    defaults: { _controller: ZanimauxBundle:User:affiche }
+inscription:
+    path:     /inscrit
+    defaults: { _controller: ZanimauxBundle:User:inscrit }
+redirect:
+    path:     /redirect
+    defaults: { _controller: ZanimauxBundle:User:redirect }
+profile:
+    path:     /profile
+    defaults: { _controller: ZanimauxBundle:User:show }
+edit_profile:
+    path:     /profile
+    defaults: { _controller: ZanimauxBundle:User:edit2 }
+deconnexion:
+    path:     /Template2
+login:
+    path:     /log
+    defaults: { _controller: ZanimauxBundle:User:login }
+
