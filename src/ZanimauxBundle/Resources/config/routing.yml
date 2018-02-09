@@ -14,12 +14,11 @@ redirect:
 profile:
     path:     /profile
     defaults: { _controller: ZanimauxBundle:User:show }
-edit_profile:
-    path:     /profile
-    defaults: { _controller: ZanimauxBundle:User:edit2 }
 deconnexion:
     path:     /Template2
 login:
     path:     /log
     defaults: { _controller: ZanimauxBundle:User:login }
-
+loginadmin:
+    path:     /dashboard
+    defaults: { _controller: ZanimauxBundle:User:adminAffiche }

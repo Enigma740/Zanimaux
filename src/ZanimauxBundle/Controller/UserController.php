@@ -152,6 +152,12 @@ class UserController extends Controller
             'user' => $user,
         ));
     }
+    public function adminAfficheAction()
+    {
+        return $this->render('ZanimauxBundle:User:dashboard.html.twig', array(
+            // ...
+        ));
+    }
 
 
 
