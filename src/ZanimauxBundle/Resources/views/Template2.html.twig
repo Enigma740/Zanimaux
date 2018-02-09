@@ -45,13 +45,33 @@
                         $( "#num" ).toggle();
                     });
                 });
+                $(function() {
+                    $( "#roleC" ).click(function() {
+                        $( "#num" ).hide();
+                    });
+                });
+                $(function() {
+                    $( "#roleD" ).click(function() {
+                        $( "#num" ).hide();
+                    });
+                });
+                $(function() {
+                    $( "#roleM" ).click(function() {
+                        $( "#num" ).hide();
+                    });
+                });
+                $(function() {
+                    $( "#roleR" ).click(function() {
+                        $( "#num" ).hide();
+                    });
+                });
             </script>
             <form action="{{ path('fos_user_registration_register') }}" method="POST" class="form-horizontal" role="form">
                 {{form_errors(form)}}
 
 
                 <fieldset>
-                    <legend>Enregistrement d'un utilisateur</legend>
+                    <h2 style="color: red">Inscription</h2></br>
                     <div class="form-group">
                         <label for="email" class="col-md-2 control_label">Email :</label>
                         <div class="col-md-3">
@@ -122,11 +142,11 @@
                     <div class="form-group">
                         <label for="roles" class="col-md-2 control_label">Vous êtes :</label>
                         <div class="col-md-3">
-                              <input class="form-control" type="checkbox" id="roleV" name="fos_user_registration_form[roles][ROLE_VETERINAIRE]" value="ROLE_VETERINAIRE" required="required"  /> Veterinaire
-                              <input class="form-control" type="checkbox" id="roleC" name="fos_user_registration_form[roles][ROLE_CLIENT]" value="ROLE_CLIENT" required="required"  />Client</label>
-                              <input class="form-control" type="checkbox" id="roleD" name="fos_user_registration_form[roles][ROLE_DRESSEUR]" value="ROLE_DRESSEUR" required="required"  />Dresseur
-                              <input class="form-control" type="checkbox" id="roleM" name="fos_user_registration_form[roles][ROLE_PROPRIETAIRE_MAGASIN]" value="ROLE_PROPRIETAIRE_MAGASIN" required="required"  />Proprietaire magasin
-                              <input class="form-control" type="checkbox" id="roleR" name="fos_user_registration_form[roles][ROLE_PROPRIETAIRE_REFUGE]" value="ROLE_PROPRIETAIRE_REFUGE" required="required"  />Proprietaire refuge
+                              <input class="form-control" type="radio" id="roleV"  name="fos_user_registration_form[roles]" value="ROLE_VETERINAIRE" required="required" /> Veterinaire
+                              <input class="form-control" type="radio" id="roleC" name="fos_user_registration_form[roles]" value="ROLE_CLIENT" required="required"/>Client</label>
+                              <input class="form-control" type="radio" id="roleD" name="fos_user_registration_form[roles]" value="ROLE_DRESSEUR" required="required"/>Dresseur
+                              <input class="form-control" type="radio" id="roleM" name="fos_user_registration_form[roles]" value="ROLE_PROPRIETAIRE_MAGASIN" required="required"/>Proprietaire magasin
+                              <input class="form-control" type="radio" id="roleR" name="fos_user_registration_form[roles]" value="ROLE_PROPRIETAIRE_REFUGE"/>Proprietaire refuge
                         </div>
                     </div>
                     <div class="form-group" style="display: none" id="num">
