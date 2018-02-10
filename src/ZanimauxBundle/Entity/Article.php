@@ -49,6 +49,11 @@ class Article
      */
     private $piecejointe;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumn(name="User_id",referencedColumnName="Cin")
+     */
+    private $user;
 
 }
 

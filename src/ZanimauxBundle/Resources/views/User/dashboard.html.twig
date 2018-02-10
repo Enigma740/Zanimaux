@@ -1,8 +1,10 @@
 <html lang="en">
 {% trans_default_domain 'FOSUserBundle' %}
+{% block head %}
 <head>
     <title>Matrix Admin</title>
     <meta charset="UTF-8" />
+    <title>{% block title %}Layout dashboard {% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="{{ asset('adminpage/css/bootstrap-responsive.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('adminpage/css/bootstrap-responsive.min.css') }}" />
@@ -13,9 +15,10 @@
     <link rel="stylesheet" href="{{ asset('adminpage/css/jquery.gritter.css') }}" />
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
 </head>
+{% endblock %}
 
 <body>
-
+{% block up %}
 <!--Header-part-->
 <div id="header">
     <h1><a href="{{ path('loginadmin') }}">Matrix Admin</a></h1>
@@ -41,13 +44,15 @@
     <input type="text" placeholder="Search here..."/>
     <button type="submit" class="tip-bottom" title="Search"><i class="icon-search icon-white"></i></button>
 </div>
+
 <!--close-top-serch-->
 <!--sidebar-menu-->
+{% block bar_laterale %}
 <div id="sidebar"><a href="{{ path('loginadmin') }}" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a>
     <ul>
         <li class="active"><a href="{{ path('loginadmin') }}"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
-        <li> <a href="{{ asset('adminpage/charts.html') }}"><i class="icon icon-signal"></i> <span>Charts &amp; graphs</span></a> </li>
-        <li> <a href="{{ asset('adminpage/widgets.html') }}"><i class="icon icon-inbox"></i> <span>Widgets</span></a> </li>
+        <li> <a href="{{ path('gereruser') }}"><i class="icon icon-signal"></i> <span>Gerer les utilisateurs</span></a> </li>
+        <li> <a href="{{ path('gereruser')}}"><i class="icon icon-inbox"></i> <span>Widgets</span></a> </li>
         <li><a href="{{ asset('adminpage/tables.html') }}"><i class="icon icon-th"></i> <span>Tables</span></a></li>
         <li><a href="grid.html"><i class="icon icon-fullscreen"></i> <span>Full width</span></a></li>
         <li class="submenu"> <a href="#"><i class="icon icon-th-list"></i> <span>Forms</span> <span class="label label-important">3</span></a>
@@ -92,50 +97,26 @@
         </li>
     </ul>
 </div>
+{% endblock %}
 <!--sidebar-menu-->
 
 <!--main-container-part-->
+ {% block contenu %}
 <div id="content">
     <!--breadcrumbs-->
     <div id="content-header">
         <div id="breadcrumb"> <a href="{{ path('loginadmin') }}" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a></div>
     </div>
-    <h1>Liste des Utilisateurs</h1>
-    <table>
-        <thead>
-        <tr>
-            <th>Username</th>
-            <th>email</th>
-            <th>Roles</th>
-            <th>Action</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for user in users %}
-            <tr>
-                <td>{{ user.username }}</td>
-                <td>{{ user.email }}</td>
-                <td>{% for role in user.roles %}
-                        {{ role }},
-                    {% endfor %}</td>
-                <td><a href="{{ path('delete',{'id':user.id })}}">
-                        supprimer
-                    </a></td>
-                <td></td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
 
 
-    </ul>
     </div>
-</div>
+     {% endblock %}
+{% endblock %}
 
 <!--end-main-container-part-->
 
 <!--Footer-part-->
-
+{% block footer %}
 <div class="row-fluid">
     <div id="footer" class="span12"> 2013 &copy; Matrix Admin. Brought to you by <a href="http://themedesigner.in">Themedesigner.in</a> </div>
 </div>
@@ -187,6 +168,8 @@
     function resetMenu() {
         document.gomenu.selector.selectedIndex = 2;
     }
+
 </script>
+{% endblock %}
 </body>
 </html>

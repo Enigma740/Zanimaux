@@ -127,6 +127,7 @@ class UserController extends Controller
     }
     public function logoutAction()
     {
+
         return $this->render('ZanimauxBundle:User:Layout2.html.twig', array(
             // ...
         ));
@@ -144,17 +145,18 @@ class UserController extends Controller
     }
     public function editAction($id)
     {
-        $user = $this->getUser();
-        if (!is_object($user) || !$user instanceof UserInterface) {
-            throw new AccessDeniedException('This user does not have access to this section.');
-        }
+        //renvoi les users
+        $userManager = $this->get('fos_user.user_manager');
+        $userss = $userManager->findUsers();
+
+        //supprimer les user
         $em = $this->getDoctrine()->getManager();
         $users = $em->getRepository("ZanimauxBundle:User")
             ->find($id);
         $em->remove($users);
         $em->flush();
         echo 'DELETED';
-        return $this->render('ZanimauxBundle:User:dashboard.html.twig');}
+        return $this->redirectToRoute('gereruser');}
     public function showAction()
     {
         $user = $this->getUser();
@@ -166,17 +168,20 @@ class UserController extends Controller
             'user' => $user,
         ));
     }
-    public function adminAfficheAction()
+    public function adminuserAction()
     {
+        //affiche donnees utilisateur
         $userManager = $this->get('fos_user.user_manager');
         $users = $userManager->findUsers();
-        return $this->render('ZanimauxBundle:User:dashboard.html.twig', array(
+        return $this->render('ZanimauxBundle:User:gestionUtilisateur.html.twig', array(
             'users' => $users,
         ));
 
     }
-    public function admingererAction()
+    public function adminAfficheAction()
     {
+        return $this->render('ZanimauxBundle:User:dashboard.html.twig'
+        );
 
     }
 

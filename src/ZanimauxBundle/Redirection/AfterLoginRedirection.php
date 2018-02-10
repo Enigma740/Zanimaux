@@ -52,13 +52,13 @@ class AfterLoginRedirection implements AuthenticationSuccessHandlerInterface
         elseif (in_array('ROLE_CLIENT', $rolesTab, true))
             $redirection = new RedirectResponse($this->router->generate('redirect'));
         elseif (in_array('ROLE_DRESSEUR', $rolesTab, true))
-            $redirection = new RedirectResponse($this->router->generate('dresseurpage'));
+            $redirection = new RedirectResponse($this->router->generate('petSitterpage'));
         elseif (in_array('ROLE_VETERINAIRE', $rolesTab, true))
-            $redirection = new RedirectResponse($this->router->generate('dresseurpage'));
+            $redirection = new RedirectResponse($this->router->generate('redirect'));
         elseif (in_array('ROLE_PROPRIETAIRE_MAGASIN', $rolesTab, true))
-            $redirection = new RedirectResponse($this->router->generate('dresseurpage'));
+            $redirection = new RedirectResponse($this->router->generate('redirect'));
         elseif (in_array('ROLE_PROPRIETAIRE_REFUGE', $rolesTab, true))
-            $redirection = new RedirectResponse($this->router->generate('dresseurpage'));
+            $redirection = new RedirectResponse($this->router->generate('redirect'));
         // otherwise we redirect user to the member area
         else
             $redirection = new RedirectResponse($this->router->generate('fos_user_registration_register'));
