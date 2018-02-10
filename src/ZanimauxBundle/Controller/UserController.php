@@ -2,6 +2,7 @@
 
 namespace ZanimauxBundle\Controller;
 
+use FOS\UserBundle\Model\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use FOS\UserBundle\Event\FilterUserResponseEvent;
@@ -132,15 +133,28 @@ class UserController extends Controller
     }
     public function redirectAction()
     {
+        $user = $this->getUser();
+        if (!is_object($user) || !$user instanceof UserInterface) {
+            throw new AccessDeniedException('This user does not have access to this section.');
+        }
+
         return $this->render('ZanimauxBundle:User:Layout2.html.twig', array(
-            // ...
+            'user' => $user,
         ));
     }
-    public function editAction(){
-        return $this->render('ZanimauxBundle:User:profile.html.twig', array(
-            // ...
-        ));
-    }
+    public function editAction($id)
+    {
+        $user = $this->getUser();
+        if (!is_object($user) || !$user instanceof UserInterface) {
+            throw new AccessDeniedException('This user does not have access to this section.');
+        }
+        $em = $this->getDoctrine()->getManager();
+        $users = $em->getRepository("ZanimauxBundle:User")
+            ->find($id);
+        $em->remove($users);
+        $em->flush();
+        echo 'DELETED';
+        return $this->render('ZanimauxBundle:User:dashboard.html.twig');}
     public function showAction()
     {
         $user = $this->getUser();
@@ -154,11 +168,17 @@ class UserController extends Controller
     }
     public function adminAfficheAction()
     {
+        $userManager = $this->get('fos_user.user_manager');
+        $users = $userManager->findUsers();
         return $this->render('ZanimauxBundle:User:dashboard.html.twig', array(
-            // ...
+            'users' => $users,
         ));
-    }
 
+    }
+    public function admingererAction()
+    {
+
+    }
 
 
 

@@ -20,7 +20,8 @@ class RegistrationType extends AbstractType
             ->add('codePostale')
             ->add('telephone')
             ->add('roles', ChoiceType::class, array('label' => 'Role',
-            'choices' => array(' VETERINAIRE' => 'ROLE_VETERINAIRE',
+            'choices' => array('Admin'=> 'ROLE_SUPER_ADMIN',
+                ' VETERINAIRE' => 'ROLE_VETERINAIRE',
                 'CLIENT' => 'ROLE_CLIENT',
                 'DRESSEUR' => 'ROLE_DRESSEUR',
                 'PROPRIETAIRE MAGASIN' => 'ROLE_PROPRIETAIRE_MAGASIN',
@@ -28,7 +29,7 @@ class RegistrationType extends AbstractType
             'required' => true, 'multiple' => true,))
             ->add('numeroOrdre', TextType::class, array('label' => 'Numero Odre',
                 'required' => true))
-            ->add('numeroOrdre')
+
 
 
         ;

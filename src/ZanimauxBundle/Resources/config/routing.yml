@@ -22,3 +22,13 @@ login:
 loginadmin:
     path:     /dashboard
     defaults: { _controller: ZanimauxBundle:User:adminAffiche }
+
+dresseurpage:
+    path:     /dresseur
+    defaults: { _controller: ZanimauxBundle:Dresseur:affiche }
+delete:
+    path:     /delete/{id}
+    defaults: { _controller: ZanimauxBundle:User:edit}
+
+
+

@@ -46,11 +46,19 @@ class AfterLoginRedirection implements AuthenticationSuccessHandlerInterface
             return $role->getRole();
         }, $roles);
         // If is a admin or super admin we redirect to the backoffice area
-        if (in_array('ROLE_ADMIN', $rolesTab, true))
-            $redirection = new RedirectResponse($this->router->generate('affiche'));
+        if (in_array('ROLE_SUPER_ADMIN', $rolesTab, true))
+            $redirection = new RedirectResponse($this->router->generate('loginadmin'));
         // otherwise, if is a commercial user we redirect to the crm area
-        elseif (in_array('ROLE_USER', $rolesTab, true))
+        elseif (in_array('ROLE_CLIENT', $rolesTab, true))
             $redirection = new RedirectResponse($this->router->generate('redirect'));
+        elseif (in_array('ROLE_DRESSEUR', $rolesTab, true))
+            $redirection = new RedirectResponse($this->router->generate('dresseurpage'));
+        elseif (in_array('ROLE_VETERINAIRE', $rolesTab, true))
+            $redirection = new RedirectResponse($this->router->generate('dresseurpage'));
+        elseif (in_array('ROLE_PROPRIETAIRE_MAGASIN', $rolesTab, true))
+            $redirection = new RedirectResponse($this->router->generate('dresseurpage'));
+        elseif (in_array('ROLE_PROPRIETAIRE_REFUGE', $rolesTab, true))
+            $redirection = new RedirectResponse($this->router->generate('dresseurpage'));
         // otherwise we redirect user to the member area
         else
             $redirection = new RedirectResponse($this->router->generate('fos_user_registration_register'));

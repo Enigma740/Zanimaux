@@ -36,10 +36,12 @@ security:
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/afficher, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/admin/, role: ROLE_ADMIN }
+        - { path: ^/affiche/, role: ROLE_ADMIN }
         - { path: ^/affiche/, role: ROLE_CLIENT }
-        - { path: ^/admin/, role: ROLE_VETERINAIRE }
-        - { path: ^/admin/, role: ROLE_DRESSEUR }
+        - { path: ^/affiche/, role: ROLE_VETERINAIRE }
+        - { path: ^/affiche/, role: ROLE_DRESSEUR }
+        - { path: ^/affiche/, role: ROLE_PROPRIETAIRE_MAGASIN }
+        - { path: ^/affiche/, role: ROLE_PROPRIETAIRE_REFUGE }
 
 
 
